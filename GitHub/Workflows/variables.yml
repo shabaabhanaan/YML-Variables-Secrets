@@ -1,0 +1,23 @@
+name: variables & Secrets
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on pushes to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      GLOBAL_VAR: "This is a global variable" # Example of a workflow-level variable
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Print global variable
+        run: echo "Global variable: $GLOBAL_VAR"
+
+      - name: Use a secret
+        run: echo "My secret is ${{ secrets.MY_SECRET }}"
